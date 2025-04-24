@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const pool = require('./config/db');
+const config = require('./config/config');
 
 const petitionerRoutes = require('./routes/petitionerRoutes');
 const petitionRoutes = require('./routes/petitionRoutes');
@@ -16,7 +17,16 @@ const app = express();
 
 // Move CORS middleware to top
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (config.CORS.ORIGINS.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
@@ -29,12 +39,12 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || 'randomSecret',
+    secret: config.SESSION.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      secure: config.SESSION.COOKIE.SECURE,
+      sameSite: config.SESSION.COOKIE.SAME_SITE,
       httpOnly: true
     }
   })
@@ -60,7 +70,7 @@ app.use('/admin', adminRoutes);
 app.use('/slpp', openDataApi);
 app.use('/committee', committeeRoutes);
 // Start server
-const port = process.env.PORT || 5001;
+const port = config.PORT;
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

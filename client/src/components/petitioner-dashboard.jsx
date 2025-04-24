@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, LogOut } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { apiUrl } from '../config.js'
 
 export default function PetitionerDashboard() {
   const [selectedPetition, setSelectedPetition] = useState(null)
@@ -48,7 +49,7 @@ export default function PetitionerDashboard() {
 
   const fetchUserInfo = async () => {
     try {
-      const response = await fetch('http://localhost:5001/petitioner/profile', {
+      const response = await fetch(apiUrl('/petitioner/profile'), {
         credentials: 'include'
       })
       if (!response.ok) {
@@ -64,8 +65,8 @@ export default function PetitionerDashboard() {
   const fetchPetitions = async () => {
     try {
       const endpoint = currentView === 'myPetitions' 
-        ? 'http://localhost:5001/petition/my-petitions'
-        : 'http://localhost:5001/petition/all'
+        ? apiUrl('/petition/my-petitions')
+        : apiUrl('/petition/all')
       
       const response = await fetch(endpoint, {
         credentials: 'include'
@@ -82,7 +83,7 @@ export default function PetitionerDashboard() {
 
   const handleLogout = async () => {
     try {
-      await fetch('http://localhost:5001/petitioner/logout', {
+      await fetch(apiUrl('/petitioner/logout'), {
         credentials: 'include'
       })
       navigate('/')
@@ -94,7 +95,7 @@ export default function PetitionerDashboard() {
   const handleCreatePetition = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch('http://localhost:5001/petition/create', {
+      const response = await fetch(apiUrl('/petition/create'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -124,7 +125,7 @@ export default function PetitionerDashboard() {
 
   const handleSignPetition = async (petitionId) => {
     try {
-      const response = await fetch('http://localhost:5001/petition/sign', {
+      const response = await fetch(apiUrl('/petition/sign'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
