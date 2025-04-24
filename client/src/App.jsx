@@ -4,7 +4,7 @@ import { LoadingScreen } from './components/loading-screen'
 import { AuthModal } from './components/auth-model'
 import { RegistrationPage } from './components/registration-page'
 import { CommitteeAuthModal } from "./components/committee-auth-modal";
-import { BrowserRouter, HashRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true)
