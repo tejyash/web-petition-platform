@@ -7,7 +7,7 @@
 5. [Environment Variables](#environment-variables)
 6. [Database Schema](#database-schema)
 7. [API Documentation](#api-documentation)
-8. [File Structure](#file-structure)
+8. [In-App Screenshots](#screenshots)
 
 ---
 
@@ -211,7 +211,6 @@ The provided SQL file `cw2db.sql` contains the schema and initial data for the `
 
 ---
 
-## Screenshots
 ## Screenshots
 
 ### 1. Home Page
