@@ -1,8 +1,5 @@
-# SLPP Documentation
-
-
-
 ## Table of Contents
+
 1. [Overview](#overview)
 2. [System Requirements](#system-requirements)
 3. [Client Deployment](#client-deployment)
@@ -23,6 +20,71 @@ Citizens register with a unique 10‑digit Biometric ID (BioID), scan its QR cod
 A dedicated Committee Dashboard allows administrators to set signature thresholds, review petitions, publish parliamentary responses, and automatically close petitions once thresholds are met.
 
 An open‑data REST API exposes all petition records and statuses to the public, media, and organizations.
+
+---
+
+## Technology Stack
+
+**Frontend:**
+
+- **Framework & Tooling:** React + Vite
+- **Styling & UI:** TailwindCSS, Shadcn UI
+- **Routing & Data:** React Router DOM, Axios
+- **Animations:** Framer Motion
+- **Quality:** ESLint
+
+**Backend:**
+
+- **Runtime & Framework:** Node.js, Express.js
+- **Database:** MySQL 8.0.35
+- **Authentication & Security:** express-session, bcryptjs, cookie-parser, cors, dotenv
+- **Utilities:** body-parser, nodemon
+
+**Architecture & Dev Tools:**
+
+- **MVC pattern** (controllers, models, routes, config)
+- Environment configuration via .env
+- Git for version control
+- Development servers on ports 5173 (frontend) and 5001 (backend)
+
+---
+
+## Key Highlights & Achievements
+
+**Civic-Tech Inspiration:** Modeled user flow and visual design on Gov.uk petitions, fostering intuitive citizen engagement.
+
+**Biometric ID Verification:**
+
+- Integrated QR-code scanning via webcam to auto-fill 10-digit BioIDs.
+- Fallback manual entry with server-side validation against preloaded BioID records.
+- Safeguards against duplicate BioID or email registrations.
+
+**Robust Authentication:**
+
+- Session-based login for "Petitioner" and "Committee" roles.
+- Secure password hashing with bcryptjs and cookie management for "remember me" functionality.
+
+**Dynamic User Dashboards:**
+
+- **Petitioner:** Create petitions (immutable once posted), view live signature counts and statuses, sign any open petition (one signature per petition, non-revocable).
+- **Committee:** Configure global signature thresholds; review and respond to qualifying petitions; automated status update to “closed” once answered.
+
+**Open Data REST API:**
+
+- Public endpoints (`GET /slpp/petitions[?status=open]`) return JSON payloads of all or filtered petitions, complete with IDs, titles, text, authors, signature counts and parliamentary responses.
+
+**UX & Error Handling:**
+
+- Responsive, mobile-first design with Tailwind utilities.
+- Animated page transitions and feedback using Framer Motion.
+- AJAX form-validation for real-time BioID/email/password checks.
+- Clear error messages for invalid credentials, duplicate IDs, used QR codes, etc.
+
+**Data Visualization & Extras:**
+
+- Committee dashboard charts visualising signature progress (e.g., Chart.js integration).
+- Cookie-based persisting of last-used username for faster login.
+- Modular, environment-driven configuration for easy deployment.
 
 ---
 
