@@ -1,72 +1,96 @@
-SLPP Documentation
+# SLPP Documentation
 
-Table of Contents
-1. Overview
-2. System Requirements
-3. Client Deployment
-4. Server Deployment
-5. API Documentation
-6. File Structure
+## Table of Contents
+1. [Overview](#overview)
+2. [System Requirements](#system-requirements)
+3. [Client Deployment](#client-deployment)
+4. [Server Deployment](#server-deployment)
+5. [Environment Variables](#environment-variables)
+6. [Database Schema](#database-schema)
+7. [API Documentation](#api-documentation)
+8. [File Structure](#file-structure)
 
-Overview
+---
 
-SLPP is a full-stack web application built with:
-1. Frontend: React + Vite, TailwindCSS, Framer Motion
-2. Backend: Node.js, Express.js, MySQL
-3. Authentication: User Login & Registration -- Session-based with cookie management.
+## Overview
 
-System Requirements
+**SLPP** is a full-stack web application for managing and signing petitions, built with:
 
-Node.js v18.17.0
-npm v9.6.7
-MySQL v8.0.35 - I used MySQL Server + MySQL Workbench
+- **Frontend:** React + Vite, Tailwind CSS, Framer Motion
+- **Backend:** Node.js, Express.js, MySQL
+- **Authentication:** Session-based user login & registration (cookie management)
 
+---
 
---------------------------------
+## System Requirements
 
-Client Deployment
+- **Node.js:** v18.17.0
+- **npm:** v9.6.7
+- **MySQL:** v8.0.35 (Server + Workbench)
 
-1. Navigate to client folder
-cd client (PLEASE DO THIS AS ROOT FOLDER HAS TWO SEPARATE FOLDERS -- CLIENT & SERVER)
+---
 
-2. Install dependencies
-npm install or look into the package.json file for installing each individual package.
+## Client Deployment
 
-3. Run the application (if doesn't run then build it first)
+1. **Navigate to the client folder**  
+   ```bash
+   cd client
+   ```
+2. **Install dependencies**  
+   ```bash
+   npm install
+   ```
+3. **Run the application**  
+   ```bash
+   npm run dev
+   ```
+   - If it fails, build first: `npm run build`
+4. **Troubleshooting**  
+   If issues persist, install specific versions:
+   ```bash
+   npm install autoprefixer@10.4.20 axios@1.7.9 framer-motion@11.18.0 lucide-react@0.471.1 \
+     postcss@8.5.1 react@18.3.1 react-dom@18.3.1 react-router-dom@7.1.1 \
+     tailwindcss@3.4.17 @eslint/js@9.17.0 @shadcn/ui@0.0.4 @types/react@18.3.18 \
+     @types/react-dom@18.3.5 @vitejs/plugin-react@4.3.4 eslint@9.17.0 \
+     eslint-plugin-react@7.37.2 eslint-plugin-react-hooks@5.0.0 \
+     eslint-plugin-react-refresh@0.4.16 globals@15.14.0 vite@6.0.5
+   ```
+5. **Access**  
+   The client runs at: `http://localhost:5173`
 
-npm run dev (I prefer, and works on this project) or npm run build
+---
 
-5. If all above doesn't work, try this hack:
+## Server Deployment
 
-npm install autoprefixer@10.4.20 axios@1.7.9 framer-motion@11.18.0 lucide-react@0.471.1 postcss@8.5.1 react@18.3.1 react-dom@18.3.1 react-router-dom@7.1.1 tailwindcss@3.4.17 @eslint/js@9.17.0 @shadcn/ui@0.0.4 @types/react@18.3.18 @types/react-dom@18.3.5 @vitejs/plugin-react@4.3.4 eslint@9.17.0 eslint-plugin-react@7.37.2 eslint-plugin-react-hooks@5.0.0 eslint-plugin-react-refresh@0.4.16 globals@15.14.0 vite@6.0.5
+1. **Navigate to the server folder**  
+   ```bash
+   cd server
+   ```
+2. **Install dependencies**  
+   ```bash
+   npm install
+   ```
+3. **Start the server**  
+   ```bash
+   npm run dev
+   ```  
+   (or `npm start`)
+4. **Troubleshooting**  
+   If issues persist, install specific versions:
+   ```bash
+   npm install bcryptjs@2.4.3 body-parser@1.20.3 cookie-parser@1.4.7 cors@2.8.5 dotenv@16.4.7 \
+     express@4.21.2 express-session@1.18.1 mysql2@3.12.0 nodemon@3.1.9
+   ```
+5. **Access**  
+   The server runs at: `http://localhost:5001`
 
-The client will run on http://localhost:5173 by default.(vite.js Default) AND I have optimised it for it, please don't change it.
+---
 
---------------------------------
+## Environment Variables
 
-Server Deployment
+Create a `.env` file in the **server** folder and add:
 
-1. Navigate to server folder
-cd server (PLEASE DO THIS AS ROOT FOLDER HAS TWO SEPARATE FOLDERS -- CLIENT & SERVER)
-
-2. Install dependencies
-npm install or look into the package.json (dependencies & devDependencies) file for installing each individual package.
-
-3. Start the server
-I prefer: npm run dev (but you can use npm start)
-
-4. If nothing works, try this HACK:
-npm install bcryptjs@2.4.3 body-parser@1.20.3 cookie-parser@1.4.7 cors@2.8.5 dotenv@16.4.7 express@4.21.2 express-session@1.18.1 mysql2@3.12.0 nodemon@3.1.9
-
-The server will run on http://localhost:5001 by default AND I have optimised it for it, please don't change it.
-
---------------------------------
-
-Environment Variables
-
-Use the provided .env file only PLEASE.Create an .env file in your folder and paste the below code:
-# server/.env
-
+```ini
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=12345678
@@ -78,104 +102,104 @@ SESSION_SECRET=somesecretstring
 # Admin defaults
 ADMIN_EMAIL=admin@petition.parliament.sr
 ADMIN_PASSWORD=2025%shangrila
+```
 
----------------------------------
+---
 
-The sql file with the db -- cw2db.sql is provided alongside!
+## Database Schema
 
----------------------------------
+The provided SQL file `cw2db.sql` contains the schema and initial data for the `cw2db` database.
 
-API Documentation
+---
 
-- The API provides several endpoints for managing petitions and users:
+## API Documentation
 
-1. Authentication Endpoints
+### 1. Authentication Endpoints
 
-POST /petitioner/register: Register new petitioner
-POST /petitioner/login: Petitioner login
-GET /petitioner/logout: Petitioner logout
-POST /committee/login: Committee login
-GET /committee/logout: Committee logout
+- **POST** `/petitioner/register`  : Register a new petitioner
+- **POST** `/petitioner/login`     : Petitioner login
+- **GET**  `/petitioner/logout`    : Petitioner logout
+- **POST** `/committee/login`      : Committee login
+- **GET**  `/committee/logout`     : Committee logout
 
-2. Petition Endpoints
+### 2. Petition Endpoints
 
-GET /petition/all: Get all petitions
-GET /petition/my-petitions: Get user's petitions
-POST /petition/create: Create new petition
-POST /petition/sign: Sign a petition
-POST /petition/set-threshold: Set petition threshold (committee only)
-POST /petition/respond: Respond to petition (committee only)
+- **GET**  `/petition/all`          : Get all petitions
+- **GET**  `/petition/my-petitions`: Get petitions of the authenticated user
+- **POST** `/petition/create`       : Create a new petition
+- **POST** `/petition/sign`         : Sign a petition
+- **POST** `/petition/set-threshold`: Set petition threshold (committee only)
+- **POST** `/petition/respond`      : Respond to a petition (committee only)
 
-3. Open Data REST API Implementation (20%)
+### 3. Open Data REST API (20%)
 
-GET /slpp/petitions: Public API for petition data
+- **GET** `/slpp/petitions`  : Public API for petition data
 
-Query parameters:
-- status: Filter by status (open/closed/pending)
-- limit: Results per page
-- page: Page number
-- sort: Sort field
+  **Query Parameters:**
+  - `status` : Filter by status (`open` / `closed` / `pending`)
+  - `limit`  : Results per page
+  - `page`   : Page number
+  - `sort`   : Sort field
 
-For detailed API callouts and request/response formats, refer to the OpenDataAPI.js file in slpp-node/server/routes/OpenDataAPI.js
+> For detailed request/response formats, see [OpenDataAPI.js](server/routes/OpenDataAPI.js).
 
----------------------------------
+---
 
-File Structure
+## File Structure
 
-1. SLPP-NODE/Client:
+### Client (`/client`)
+```
+client/
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── App.jsx
+│   ├── assets/
+│   │   └── react.svg
+│   ├── components/
+│   │   ├── auth-modal.jsx
+│   │   ├── committee-auth-modal.jsx
+│   │   ├── loading-screen.jsx
+│   │   ├── petition-page.jsx
+│   │   ├── petitioner-committee.jsx
+│   │   ├── petitioner-dashboard.jsx
+│   │   └── registration-page.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── postcss.config.cjs
+├── tailwind.config.js
+└── vite.config.js
+```
 
-└── 📁client
-    └── 📁public
-        └── vite.svg
-    └── 📁src
-        └── App.jsx
-        └── 📁assets
-            └── react.svg
-        └── Client-Folder-structure.md
-        └── 📁components
-            └── auth-model.jsx
-            └── committee-auth-modal.jsx
-            └── loading-screen.jsx
-            └── petition-page.jsx
-            └── petitioner-commitee.jsx
-            └── petitioner-dashboard.jsx
-            └── registration-page.jsx
-        └── index.css
-        └── main.jsx
-    └── .gitignore
-    └── eslint.config.js
-    └── index.html
-    └── package-lock.json
-    └── package.json
-    └── postcss.config.cjs
-    └── tailwind.config.js
-    └── vite.config.js
+### Server (`/server`)
+```
+server/
+├── config/
+│   └── db.js
+├── controllers/
+│   ├── adminController.js
+│   ├── committeeController.js
+│   ├── petitionController.js
+│   └── petitionerController.js
+├── models/
+│   ├── BioID.js
+│   ├── Petition.js
+│   └── Petitioner.js
+├── routes/
+│   ├── adminRoutes.js
+│   ├── committeeRoutes.js
+│   ├── OpenDataAPI.js
+│   ├── petitionerRoutes.js
+│   └── petitionRoutes.js
+├── .env
+├── package.json
+├── package-lock.json
+├── server.js
+└── SLPP-NODE.md
+```
 
-2. SLPP-NODE/Server:
-
-└── 📁server
-    └── 📁config
-        └── db.js
-    └── 📁controllers
-        └── adminController.js
-        └── committeeController.js
-        └── petitionController.js
-        └── petitionerController.js
-    └── 📁models
-        └── BioID.js
-        └── Petition.js
-        └── Petitioner.js
-    └── 📁routes
-        └── adminRoutes.js
-        └── committeeRoutes.js
-        └── OpenDataAPI.js
-        └── petitionerRoutes.js
-        └── petitionRoutes.js
-    └── .DS_Store
-    └── .env
-    └── package-lock.json
-    └── package.json
-    └── server.js
-    └── SLPP-NODE.md
-
----------------------------------
