@@ -211,63 +211,38 @@ The provided SQL file `cw2db.sql` contains the schema and initial data for the `
 
 ---
 
-## File Structure
+## Screenshots
+## Screenshots
 
-### Client (`/client`)
+### 1. Home Page
+![Home Page](./screenshots/CleanShot%202025-01-20%20at%2008.05.34.png)
 
-```
-client/
-├── public/
-│   └── vite.svg
-├── src/
-│   ├── App.jsx
-│   ├── assets/
-│   │   └── react.svg
-│   ├── components/
-│   │   ├── auth-modal.jsx
-│   │   ├── committee-auth-modal.jsx
-│   │   ├── loading-screen.jsx
-│   │   ├── petition-page.jsx
-│   │   ├── petitioner-committee.jsx
-│   │   ├── petitioner-dashboard.jsx
-│   │   └── registration-page.jsx
-│   ├── index.css
-│   └── main.jsx
-├── .gitignore
-├── eslint.config.js
-├── index.html
-├── package.json
-├── package-lock.json
-├── postcss.config.cjs
-├── tailwind.config.js
-└── vite.config.js
-```
+### 2. Login Modal
+![Login to Sign Petitions](./screenshots/CleanShot%202025-01-20%20at%2008.05.47.png)
 
-### Server (`/server`)
+### 3. Register Modal
+![Register as a Citizen](./screenshots/CleanShot%202025-01-20%20at%2008.08.27.png)
 
-```
-server/
-├── config/
-│   └── db.js
-├── controllers/
-│   ├── adminController.js
-│   ├── committeeController.js
-│   ├── petitionController.js
-│   └── petitionerController.js
-├── models/
-│   ├── BioID.js
-│   ├── Petition.js
-│   └── Petitioner.js
-├── routes/
-│   ├── adminRoutes.js
-│   ├── committeeRoutes.js
-│   ├── OpenDataAPI.js
-│   ├── petitionerRoutes.js
-│   └── petitionRoutes.js
-├── .env
-├── package.json
-├── package-lock.json
-├── server.js
-└── SLPP-NODE.md
-```
+### 4. Registration Form
+![Registration Form with BioID Entry](./screenshots/CleanShot%202025-01-20%20at%2008.09.27.png)
 
+### 5. Petitioner Dashboard
+![My Petitions Dashboard](./screenshots/CleanShot%202025-01-20%20at%2008.09.36.png)
+
+### 6. Petition Detail (Closed, Responded)
+![Closed Petition with Response](./screenshots/CleanShot%202025-01-20%20at%2008.09.49.png)
+
+### 7. Petition Detail (Open, Unresponded)
+![Open Petition Awaiting Response](./screenshots/CleanShot%202025-01-20%20at%2008.10.14.png)
+
+### 8. Create Petition Modal
+![Create New Petition](./screenshots/CleanShot%202025-01-20%20at%2008.12.00.png)
+
+### 9. Committee Dashboard
+![Petition Review Dashboard](./screenshots/CleanShot%202025-01-20%20at%2008.12.11.png)
+
+### 10. Committee Petition Detail
+![Respond to Petition (Committee)](./screenshots/CleanShot%202025-01-20%20at%2008.15.36.png)
+
+### 11. Validation Error
+![BioID Validation Error](./screenshots/CleanShot%202025-01-20%20at%2008.15.36.png)
