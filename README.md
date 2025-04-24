@@ -1,5 +1,7 @@
 # SLPP Documentation
 
+
+
 ## Table of Contents
 1. [Overview](#overview)
 2. [System Requirements](#system-requirements)
@@ -14,11 +16,13 @@
 
 ## Overview
 
-**SLPP** is a full-stack web application for managing and signing petitions, built with:
+A secure, responsive platform enabling Shangri‑La citizens to propose, sign, and track parliamentary petitions—drawing inspiration from the UK Parliament’s petitions site.
 
-- **Frontend:** React + Vite, Tailwind CSS, Framer Motion
-- **Backend:** Node.js, Express.js, MySQL
-- **Authentication:** Session-based user login & registration (cookie management)
+Citizens register with a unique 10‑digit Biometric ID (BioID), scan its QR code or enter it manually for validation, then create or sign petitions.
+
+A dedicated Committee Dashboard allows administrators to set signature thresholds, review petitions, publish parliamentary responses, and automatically close petitions once thresholds are met.
+
+An open‑data REST API exposes all petition records and statuses to the public, media, and organizations.
 
 ---
 
@@ -32,20 +36,20 @@
 
 ## Client Deployment
 
-1. **Navigate to the client folder**  
+1. **Navigate to the client folder**
    ```bash
    cd client
    ```
-2. **Install dependencies**  
+2. **Install dependencies**
    ```bash
    npm install
    ```
-3. **Run the application**  
+3. **Run the application**
    ```bash
    npm run dev
    ```
    - If it fails, build first: `npm run build`
-4. **Troubleshooting**  
+4. **Troubleshooting**\
    If issues persist, install specific versions:
    ```bash
    npm install autoprefixer@10.4.20 axios@1.7.9 framer-motion@11.18.0 lucide-react@0.471.1 \
@@ -55,33 +59,33 @@
      eslint-plugin-react@7.37.2 eslint-plugin-react-hooks@5.0.0 \
      eslint-plugin-react-refresh@0.4.16 globals@15.14.0 vite@6.0.5
    ```
-5. **Access**  
+5. **Access**\
    The client runs at: `http://localhost:5173`
 
 ---
 
 ## Server Deployment
 
-1. **Navigate to the server folder**  
+1. **Navigate to the server folder**
    ```bash
    cd server
    ```
-2. **Install dependencies**  
+2. **Install dependencies**
    ```bash
    npm install
    ```
-3. **Start the server**  
+3. **Start the server**
    ```bash
    npm run dev
-   ```  
+   ```
    (or `npm start`)
-4. **Troubleshooting**  
+4. **Troubleshooting**\
    If issues persist, install specific versions:
    ```bash
    npm install bcryptjs@2.4.3 body-parser@1.20.3 cookie-parser@1.4.7 cors@2.8.5 dotenv@16.4.7 \
      express@4.21.2 express-session@1.18.1 mysql2@3.12.0 nodemon@3.1.9
    ```
-5. **Access**  
+5. **Access**\
    The server runs at: `http://localhost:5001`
 
 ---
@@ -148,6 +152,7 @@ The provided SQL file `cw2db.sql` contains the schema and initial data for the `
 ## File Structure
 
 ### Client (`/client`)
+
 ```
 client/
 ├── public/
@@ -177,6 +182,7 @@ client/
 ```
 
 ### Server (`/server`)
+
 ```
 server/
 ├── config/
